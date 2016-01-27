@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: test
+# key: test
+# binding: direct-keybinding
+# --
+var assert = require('chai').assert;
+
+describe('${1:module}', function () {
+    describe('${2:fn}', function () {
+        it('${3:should}', function () {
+            $0
+        });
+    });
+});

@@ -44,6 +44,7 @@
 (line-number-mode t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (add-to-list 'default-frame-alist '(font . "Source Code Pro-13"))
+(global-hl-line-mode +1)
 
 ;;; No bells (visible, even!)
 (setq visible-bell nil)

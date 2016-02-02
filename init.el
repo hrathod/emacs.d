@@ -28,7 +28,8 @@
                          smooth-scrolling less-css-mode material-theme
                          anzu expand-region clojure-snippets
                          diff-hl helm helm-flycheck helm-projectile
-                         helm-descbinds go-mode company-go company-tern))
+                         helm-descbinds go-mode company-go company-tern
+                         json-mode))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -206,6 +207,7 @@
 (require 'js2-refactor)
 (require 'js-doc)
 (require 'company-tern)
+(require 'json-mode)
 (add-to-list 'company-backends 'company-tern)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (setq-default js2-indent-switch-body t)

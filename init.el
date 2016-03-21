@@ -241,20 +241,25 @@
             (flycheck-select-checker 'javascript-eslint)))
 
 ;;; Clojure
-(add-hook 'clojure-mode
-          (lambda ()
-            (clj-refactor-mode 1)
-            (yas-minor-mode 1)
-            (cljr-add-keybinding-with-prefix "C-c r")
-            (define-clojure-indent
-              (defroutes 'defun)
-              (GET 2)
-              (POST 2)
-              (PUT 2)
-              (DELETE 2)
-              (HEAD 2)
-              (ANY 2)
-              (context 2))))
+(require 'clojure-mode)
+(require 'clj-refactor)
+
+(define-clojure-indent
+  (defroutes 'defun)
+  (GET 2)
+  (POST 2)
+  (PUT 2)
+  (DELETE 2)
+  (HEAD 2)
+  (ANY 2)
+  (context 2))
+
+(defun my-clojure-mode-hook ()
+  "Custom clojure mode hook."
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c r"))
+(add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
 ;;; Go-lang
 (require 'company)

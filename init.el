@@ -29,7 +29,7 @@
                          anzu expand-region clojure-snippets
                          diff-hl helm helm-flycheck helm-projectile
                          helm-descbinds go-mode company-go company-tern
-                         json-mode))
+                         json-mode ace-window helm-ag))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -54,6 +54,13 @@
   (invert-face 'mode-line)
   (run-with-timer 0.1 nil 'invert-face 'mode-line))
 (setq ring-bell-function 'my-visible-bell)
+
+;;; Windows
+(require 'ace-window)
+(global-set-key (kbd "C-c w") 'ace-window)
+(setq-default aw-keys '(?a ?s ?d ?f ?j ?k ?l))
+(setq-default aw-scope 'frame)
+(setq-default aw-background nil)
 
 ;;; File navigation
 (require 'ffap)
@@ -139,10 +146,12 @@
 (require 'helm-config)
 (require 'helm-flycheck)
 (require 'helm-descbinds)
+(require 'helm-ag)
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-set-key (kbd "C-c h x") 'helm-M-x)
 (global-set-key (kbd "C-c h e") 'helm-flycheck)
-(global-set-key (kbd "C-c h g") 'helm-google-suggest)
+(global-set-key (kbd "C-c h s") 'helm-google-suggest)
+(global-set-key (kbd "C-c h g") 'helm-ag)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)

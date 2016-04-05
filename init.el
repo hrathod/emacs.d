@@ -44,7 +44,6 @@
 (column-number-mode t)
 (line-number-mode t)
 (defalias 'yes-or-no-p 'y-or-n-p)
-(add-to-list 'default-frame-alist '(font . "Source Code Pro-15"))
 (global-hl-line-mode +1)
 
 ;;; No bells (visible, even!)
@@ -105,7 +104,21 @@
 
 
 ;;; THEME
-(load-theme 'material t)
+;;;(load-theme 'material-light t)
+;;;(load-theme 'meacupla t)
+;;;(load-theme 'zenburn t)
+(setq default-frame-alist
+      '((font . "Source Code Pro-13")
+        (background-color . "#d9d9d9")
+        (foreground-color . "#555555")
+        (border-color . "#a9a9a9")
+        (scroll-bar-background . "#a9a9a9")
+        (scroll-bar-foreground . "#555555")
+        (internal-border-width . 7)
+        (line-spacing . 3)
+        (vertical-scroll-bars . nil)
+        (left-fringe . 0)
+        (right-fringe . 0)))
 
 ;;; Auto Complete
 (require 'company)

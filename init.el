@@ -189,7 +189,7 @@
 (require 'whitespace)
 (global-whitespace-mode)
 (setq whitespace-line-column 120)
-(setq whitespace-style '(spaces face tabs empty trailing lines-tail))
+(setq whitespace-style '(face tabs empty trailing lines-tail))
 (defun cleanup-ws ()
   "Cleans up any whitespace in the file before save."
   (whitespace-cleanup))

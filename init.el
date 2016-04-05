@@ -61,10 +61,6 @@
 (setq-default aw-scope 'frame)
 (setq-default aw-background nil)
 
-;;; File navigation
-(require 'ffap)
-(global-set-key (kbd "C-c f g") 'find-file-at-point)
-
 ;;; Search & Replace
 (require 'anzu)
 (global-anzu-mode)

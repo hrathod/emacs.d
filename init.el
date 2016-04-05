@@ -29,7 +29,7 @@
                          anzu expand-region clojure-snippets
                          diff-hl helm helm-flycheck helm-projectile
                          helm-descbinds go-mode company-go company-tern
-                         json-mode ace-window helm-ag))
+                         json-mode ace-window helm-ag helm-git-grep))
 
 (dolist (package package-list)
   (unless (package-installed-p package)

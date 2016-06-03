@@ -56,10 +56,12 @@
 
 ;;; Windows
 (require 'ace-window)
-(global-set-key (kbd "C-c w") 'ace-window)
+(global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-c w d") 'ace-delete-window)
+
 (setq-default aw-keys '(?a ?s ?d ?f ?j ?k ?l))
 (setq-default aw-scope 'frame)
-(setq-default aw-background nil)
+;;;(setq-default aw-background 1)
 
 ;;; Search & Replace
 (require 'anzu)

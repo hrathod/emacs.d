@@ -24,9 +24,7 @@
                          expand-region clojure-mode exec-path-from-shell
                          projectile undo-tree company cider
                          clojure-mode-extra-font-locking clj-refactor
-                         magit diminish solarized-theme zenburn-theme
-                         smooth-scrolling less-css-mode material-theme
-                         anzu expand-region clojure-snippets
+                         magit diminish less-css-mode anzu clojure-snippets
                          diff-hl helm helm-flycheck helm-projectile
                          helm-descbinds go-mode company-go company-tern
                          json-mode ace-window helm-ag helm-git-grep))
@@ -76,11 +74,9 @@
 ;;; Git changes
 (require 'diff-hl)
 (global-diff-hl-mode +1)
+(setq-default diff-hl-side 'right)
+(setq-default diff-hl-draw-borders nil)
 (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-
-;;; Scrolling
-(require 'smooth-scrolling)
-(setq smooth-scroll-margin 1)
 
 ;;; Movement (from Prelude)
 (defun my-beginning-of-line (arg)
@@ -101,22 +97,25 @@
                 'my-beginning-of-line)
 
 
-;;; THEME
-;;;(load-theme 'material-light t)
-;;;(load-theme 'meacupla t)
-;;;(load-theme 'zenburn t)
+;;; Look & Feel
 (setq default-frame-alist
       '((font . "Source Code Pro-13")
-        (background-color . "#d9d9d9")
-        (foreground-color . "#555555")
-        (border-color . "#a9a9a9")
-        (scroll-bar-background . "#a9a9a9")
-        (scroll-bar-foreground . "#555555")
-        (internal-border-width . 7)
+        ;;(foreground-color . "#d9d9d9")
+        ;;(background-color . "#353535")
+        (background-color . "#fdfdfd")
+        (foreground-color . "#353535")
+        ;;(border-color . "#353535")
+        (border-color . "#fdfdfd")
+        ;;(scroll-bar-background . "#353535")
+        ;;(scroll-bar-foreground . "#555555")
         (line-spacing . 3)
         (vertical-scroll-bars . nil)
-        (left-fringe . 0)
-        (right-fringe . 0)))
+        (left-fringe . 8)
+        (right-fringe . 8)))
+(setq-default left-margin-width 2)
+(setq-default right-margin-width 2)
+(set-face-attribute 'region nil :background "#777777")
+(set-face-attribute 'fringe nil :background "#fdfdfd")
 
 ;;; Auto Complete
 (require 'company)

@@ -236,7 +236,7 @@
                                    "setTimeout" "clearTimeout" "setInterval"
                                    "clearInterval" "console" "JSON"
                                    "describe" "it" "before" "beforeEach"
-                                   "after" "afterEach"))
+                                   "after" "afterEach" "process" "Buffer"))
 (with-eval-after-load 'flycheck
   (setq flycheck-disabled-checkers
         (append flycheck-disabled-checkers

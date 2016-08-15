@@ -121,7 +121,8 @@
 (require 'company)
 (setq company-idle-delay 0)
 (setq company-tooltip-limit 10)
-(setq company-minimum-prefix-length 2)
+;;;(setq company-minimum-prefix-length 2)
+(setq-default company-minimum-prefix-length 0)
 (setq company-tooltip-flip-when-above t)
 (global-company-mode 1)
 
@@ -191,10 +192,6 @@
 (global-whitespace-mode)
 (setq whitespace-line-column 120)
 (setq whitespace-style '(face tabs empty trailing lines-tail))
-(defun cleanup-ws ()
-  "Cleans up any whitespace in the file before save."
-  (whitespace-cleanup))
-(add-hook 'before-save-hook 'cleanup-ws nil t)
 
 ;;; GIT
 (require 'magit)
@@ -290,6 +287,7 @@
 (defun code-cleanup ()
   "Clean up current buffer."
   (interactive)
+  (whitespace-cleanup)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))

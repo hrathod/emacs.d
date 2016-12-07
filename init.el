@@ -108,6 +108,7 @@
         (border-color . "#fdfdfd")
         ;;(scroll-bar-background . "#353535")
         ;;(scroll-bar-foreground . "#555555")
+        (cursor-color . "#339955")
         (line-spacing . 3)
         (vertical-scroll-bars . nil)
         (left-fringe . 8)

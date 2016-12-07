@@ -12,11 +12,11 @@
 
 ;;; CODE:
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
+(when (not package-archive-contents)
+  (package-refresh-contents))
 
 (defvar package-list)
 (setq-default package-list

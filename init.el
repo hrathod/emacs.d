@@ -309,7 +309,12 @@
 
 ;;; Modeline
 (when (require 'diminish)
-  (diminish 'undo-tree-mode))
+  (diminish 'undo-tree-mode)
+  (diminish 'yas-global-mode)
+  (diminish 'company-mode)
+  (diminish 'abbrev-mode)
+  (diminish 'anzu-mode)
+  (diminish 'helm-mode))
 
 (provide 'init)
 ;;; init ends here

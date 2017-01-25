@@ -91,6 +91,9 @@
   :ensure t
   :bind (("C-c h e" . helm-flycheck)))
 
+(use-package ag
+  :ensure t)
+
 (use-package helm-ag
   :ensure t
   :bind (("C-c h a" . helm-ag)))

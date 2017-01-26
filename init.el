@@ -313,6 +313,23 @@
   (untabify (point-min) (point-max)))
 (define-key prog-mode-map (kbd "C-S-f") 'code-cleanup)
 
+;;; BACKUPS
+(setq-default create-lockfiles nil)
+(setq auto-save-interval 125)
+(setq make-backup-files t
+      backup-by-copying t
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control 1
+      vc-make-backup-files t
+      vc-follow-symlinks t)
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 ;;; Look & Feel
 (setq default-frame-alist
       '((font . "Source Code Pro-15")

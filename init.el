@@ -13,7 +13,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-
 (use-package midnight
   :ensure t)
 
@@ -48,6 +47,7 @@
 
 (use-package company
   :ensure t
+  :diminish company-mode
   :init (setq company-idle-delay 0.5)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 1)
@@ -56,12 +56,14 @@
 
 (use-package undo-tree
   :ensure t
+  :diminish undo-tree-mode
   :init (setq undo-tree-history-directory-alist `((".*" . ,temporary-file-directory)))
   (setq undo-tree-auto-save-history t)
   :config (global-undo-tree-mode t))
 
 (use-package helm
   :ensure t
+  :diminish helm-mode
   :init (require 'helm-config)
   :config (helm-mode 1)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
@@ -72,12 +74,14 @@
          ("C-c h b" . helm-buffers-list)
          ("C-x C-f" . helm-find-files)
          ("C-c h w" . helm-google-suggest)
-         ("C-c h o" . helm-occur)
-         ))
+         ("C-c h o" . helm-occur)))
 
 (use-package helm-swoop
   :ensure t
-  :bind (("C-c h s" . helm-swoop)))
+  :bind
+  (("C-c h s" . helm-swoop)
+   ("C-s" . helm-swoop)
+   ("C-r" . helm-swoop)))
 
 (use-package helm-git-grep
   :ensure t
@@ -106,6 +110,7 @@
 
 (use-package whitespace
   :ensure t
+  :diminish global-whitespace-mode
   :init
   (setq whitespace-line-column 120)
   (setq whitespace-style '(face tabs empty trailing lines-trail))
@@ -135,6 +140,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :config (yas-global-mode 1))
 
 (use-package exec-path-from-shell
@@ -178,6 +184,7 @@
 
 (use-package company-tern
   :ensure t
+  :diminish tern-mode
   :config
   (progn
     (add-to-list 'company-backends 'company-tern)
@@ -195,6 +202,7 @@
 
 (use-package js2-refactor
   :ensure t
+  :diminish js2-refactor-mode
   :config
   (progn
     (js2r-add-keybindings-with-prefix "C-c r")
@@ -249,6 +257,7 @@
 
 (use-package smartparens
   :ensure t
+  :diminish smartparens-mode
   :init
   (require 'smartparens-config)
   (progn
@@ -265,6 +274,7 @@
 
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config (which-key-mode))
 
 ;;; convenience

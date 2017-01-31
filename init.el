@@ -65,16 +65,19 @@
   :ensure t
   :diminish helm-mode
   :init (require 'helm-config)
-  :config (helm-mode 1)
-  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-  :bind (("C-c h" . helm-command-prefix)
-         ("C-c h h" . helm-mini)
-         ("C-c h x" . helm-M-x)
-         ("C-c h b" . helm-buffers-list)
-         ("C-x C-f" . helm-find-files)
-         ("C-c h w" . helm-google-suggest)
-         ("C-c h o" . helm-occur)))
+  :config
+  (progn
+    (helm-mode 1)
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action))
+  :bind
+  (("C-c h" . helm-command-prefix)
+   ("C-c h h" . helm-mini)
+   ("C-c h x" . helm-M-x)
+   ("C-c h b" . helm-buffers-list)
+   ("C-x C-f" . helm-find-files)
+   ("C-c h w" . helm-google-suggest)
+   ("C-c h o" . helm-occur)))
 
 (use-package helm-swoop
   :ensure t

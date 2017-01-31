@@ -26,7 +26,7 @@
   :ensure t
   :init (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
   (setq aw-scope 'frame)
-  :bind (("C-x 0" . ace-window)
+  :bind (("C-x o" . ace-window)
          ("C-c w d" . ace-delete-window)))
 
 (use-package anzu

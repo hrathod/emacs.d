@@ -291,6 +291,9 @@
   :diminish which-key-mode
   :config (which-key-mode))
 
+(use-package docker :ensure t
+  :config (docker-global-mode 1))
+
 ;;; convenience
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)

@@ -129,7 +129,8 @@
   :init
   (progn
     (setq projectile-completion-system 'helm)
-    (setq projectile-enable-caching t))
+    (setq projectile-enable-caching t)
+    (setq projectile-test-suffix-function (lambda (project-type) ".test")))
   :config
   (progn
     (add-to-list 'projectile-globally-ignored-directories "node_modules")

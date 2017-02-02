@@ -4,3 +4,7 @@ auto-save-list/
 eshell
 .mc-lists.el
 projectile.cache
+url/
+var/
+recentf
+.yas-compiled-snippets.el

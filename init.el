@@ -294,6 +294,16 @@
 (use-package docker :ensure t
   :config (docker-global-mode 1))
 
+(use-package java-snippets
+  :ensure t)
+
+(use-package java-imports
+  :ensure t
+  :bind
+  (("C-c j i" . java-imports-add-import-dwim))
+  :config
+  (add-hook 'java-mode 'java-imports-scan-file))
+
 ;;; convenience
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)

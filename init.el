@@ -259,7 +259,7 @@
 
 (use-package company-go
   :ensure t
-  :init (setenv "GOPATH" (substitute-in-file-name "$HOME/Proejcts/Go"))
+  :init (setenv "GOPATH" (substitute-in-file-name "$HOME/Projects/Go"))
   :config
   (add-hook 'go-mode-hook
             (lambda ()
@@ -267,6 +267,7 @@
               (if (not (string-match "go" compile-command))
                   (set (make-local-variable 'compile-command)
                        "go generate && go build -v && go test -v && go vet"))
+              (set (make-local-variable 'company-backends) '(company-go))
               (local-set-key (kbd "M-.") 'godef-jump))))
 
 (use-package smartparens

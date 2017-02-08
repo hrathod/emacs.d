@@ -292,7 +292,9 @@
   :diminish which-key-mode
   :config (which-key-mode))
 
-(use-package docker :ensure t
+(use-package docker
+  :ensure t
+  :diminish docker-mode
   :config (docker-global-mode 1))
 
 (use-package java-snippets

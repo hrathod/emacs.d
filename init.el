@@ -292,6 +292,9 @@
   :diminish which-key-mode
   :config (which-key-mode))
 
+(use-package dockerfile-mode
+  :ensure t)
+
 (use-package docker
   :ensure t
   :diminish docker-mode

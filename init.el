@@ -310,6 +310,9 @@
   :config
   (add-hook 'java-mode 'java-imports-scan-file))
 
+(use-package alchemist
+  :ensure t)
+
 ;;; convenience
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)

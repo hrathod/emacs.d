@@ -224,6 +224,16 @@
     (js2r-add-keybindings-with-prefix "C-c r")
     (add-hook 'js2-mode-hook #'js2-refactor-mode)))
 
+(use-package tide
+  :ensure t
+  :config
+  (progn
+    (add-hook 'typescript-mode-hook (lambda ()
+                                      (interactive)
+                                      (tide-setup)
+                                      (eldoc-mode +1)
+                                      (tide-hl-identifier-mode +1)))))
+
 (use-package clojure-mode
   :ensure t
   :functions define-clojure-indent

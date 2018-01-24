@@ -116,11 +116,11 @@
 (use-package whitespace
   :ensure t
   :diminish global-whitespace-mode
-  :init
-  (setq whitespace-line-column 120)
-  (setq whitespace-style '(face tabs empty trailing lines-trail))
   :config
-  (global-whitespace-mode))
+  (progn
+    (setq whitespace-line-column 120)
+    (setq whitespace-style '(face tabs empty trailing lines-trail))
+    (global-whitespace-mode)))
 
 (use-package magit
   :ensure t
@@ -128,21 +128,20 @@
 
 (use-package projectile
   :ensure t
-  :init
+  :config
   (progn
     (setq projectile-completion-system 'helm)
     (setq projectile-enable-caching t)
-    (setq projectile-test-suffix-function (lambda (project-type) ".test")))
-  :config
-  (progn
+    (setq projectile-test-suffix-function (lambda (project-type) ".test"))
     (add-to-list 'projectile-globally-ignored-directories "node_modules")
+    (add-to-list 'projectile-globally-ignored-directories "_build")
     (projectile-mode 1)))
 
-;;;(use-package helm-projectile
-;;;             :ensure t
-;;;             :init (setq projectile-completion-system 'helm)
-;;;                   ;;;(setq projectile-enable-caching t)
-;;;             :config (helm-projectile-on))
+(use-package helm-projectile
+             :ensure t
+             :init (setq projectile-completion-system 'helm)
+                   ;;;(setq projectile-enable-caching t)
+             :config (helm-projectile-on))
 
 (use-package yasnippet
   :ensure t

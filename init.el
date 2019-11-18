@@ -6,6 +6,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
@@ -135,13 +136,14 @@
     (setq projectile-test-suffix-function (lambda (project-type) ".test"))
     (add-to-list 'projectile-globally-ignored-directories "node_modules")
     (add-to-list 'projectile-globally-ignored-directories "_build")
-    (projectile-mode 1)))
+    (projectile-mode 1))
+  :bind (("C-c p" . projectile-command-map)))
 
 (use-package helm-projectile
-             :ensure t
-             :init (setq projectile-completion-system 'helm)
+  :ensure t
+  :init (setq projectile-completion-system 'helm)
                    ;;;(setq projectile-enable-caching t)
-             :config (helm-projectile-on))
+  :config (helm-projectile-on))
 
 (use-package yasnippet
   :ensure t
@@ -153,21 +155,24 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package web-mode
-  :ensure t
-  :init
-  (progn
-    (setq web-mode-markup-indent-offset 4)
-    (setq web-mode-css-indent-offset 4)
-    (setq web-mode-code-indent-offset 4)
-    (setq web-mode-indent-style 4)
-    (setq web-mode-enable-auto-pairing nil))
-  :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+   :ensure t
+   :init
+   (progn
+     (setq web-mode-markup-indent-offset 4)
+     (setq web-mode-css-indent-offset 4)
+     (setq web-mode-code-indent-offset 4)
+     (setq web-mode-indent-style 4)
+     (setq web-mode-enable-auto-pairing nil))
+   :config
+   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
-(use-package flycheck
-  :ensure t
-  :init (setq flycheck-disabled-checkers '(javascript-jscs javascript-jshint))
-  :config (add-hook 'after-init-hook #'global-flycheck-mode))
+ (use-package flycheck
+ :ensure t
+ :init (setq flycheck-disabled-checkers '(javascript-jscs javascript-jshint))
+ :config
+ (progn
+   (add-hook 'after-init-hook #'global-flycheck-mode)
+   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 (use-package js2-mode
   :ensure t
@@ -209,19 +214,46 @@
 (use-package json-mode
   :ensure t)
 
-(use-package js-doc
-  :ensure t
-  :init
-  (define-key js2-mode-map (kbd "C-c * f") 'js-doc-insert-function-doc)
-  (define-key js2-mode-map (kbd "C-c * t") 'js-doc-insert-tag))
+;;;(use-package js-doc
+;;;  :ensure t
+;;;  :init
+;;;  (define-key js2-mode-map (kbd "C-c * f") 'js-doc-insert-function-doc)
+;;;  (define-key js2-mode-map (kbd "C-c * t") 'js-doc-insert-tag))
 
-(use-package js2-refactor
+;;;(use-package js2-refactor
+;;;  :ensure t
+;;;  :diminish js2-refactor-mode
+;;;  :config
+;;;  (progn
+;;;    (js2r-add-keybindings-with-prefix "C-c r")
+;;;    (add-hook 'js2-mode-hook #'js2-refactor-mode)))
+
+(use-package toml-mode
+  :ensure t)
+
+(use-package rust-mode
   :ensure t
-  :diminish js2-refactor-mode
   :config
   (progn
-    (js2r-add-keybindings-with-prefix "C-c r")
-    (add-hook 'js2-mode-hook #'js2-refactor-mode)))
+    (setq rust-format-on-save t)))
+
+(use-package flycheck-rust
+  :ensure t)
+
+(use-package racer
+  :ensure t
+  :config
+  (progn
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode)))
+
+(use-package cargo
+  :ensure t
+  :config
+  (progn
+    (add-hook 'rust-mode-hook 'cargo-minor-mode)
+    (add-hook 'toml-mode-hook 'cargo-minor-mode)))
 
 (use-package tide
   :ensure t
@@ -247,14 +279,14 @@
     (ANY 2)
     (context 2)))
 
-(use-package clj-refactor
-  :ensure t
-  :functions cljr-add-keybindings-with-prefix
-  :init
-  (progn
-    (cljr-add-keybindings-with-prefix "C-c r")
-    (add-hook 'clojure-mode-hook (lambda ()
-                                   (clj-refactor-mode 1)))))
+;;;(use-package clj-refactor
+;;;  :ensure t
+;;;  :functions cljr-add-keybindings-with-prefix
+;;;  :init
+;;;  (progn
+;;;    (cljr-add-keybindings-with-prefix "C-c r")
+;;;    (add-hook 'clojure-mode-hook (lambda ()
+;;;                                   (clj-refactor-mode 1)))))
 
 (use-package cider
   :ensure t)
@@ -303,26 +335,26 @@
   :diminish which-key-mode
   :config (which-key-mode))
 
-(use-package dockerfile-mode
-  :ensure t)
+;;;(use-package dockerfile-mode
+;;;  :ensure t)
 
-(use-package docker
-  :ensure t
-  :diminish docker-mode
-  :config (docker-global-mode 1))
+;;;(use-package docker
+;;;  :ensure t
+;;;  :diminish docker-mode
+;;;  :config (docker-global-mode 1))
 
-(use-package java-snippets
-  :ensure t)
+;;;(use-package java-snippets
+;;;  :ensure t)
 
-(use-package java-imports
-  :ensure t
-  :bind
-  (("C-c j i" . java-imports-add-import-dwim))
-  :config
-  (add-hook 'java-mode 'java-imports-scan-file))
+;;;(use-package java-imports
+;;;  :ensure t
+;;;  :bind
+;;;  (("C-c j i" . java-imports-add-import-dwim))
+;;;  :config
+;;;  (add-hook 'java-mode 'java-imports-scan-file))
 
-(use-package alchemist
-  :ensure t)
+;;;(use-package alchemist
+;;;  :ensure t)
 
 ;;; convenience
 (setq inhibit-startup-message t)
@@ -405,6 +437,7 @@
 (setq-default right-margin-width 2)
 
 ;;; General
+(define-key prog-mode-map (kbd "C-S-i") 'company-complete)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default insert-directory-program "/usr/local/bin/gls")

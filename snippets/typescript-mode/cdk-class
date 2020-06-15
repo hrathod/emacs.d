@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: cdk-class
+# key: cdkclass
+# --
+import cdk = require('@aws-cdk/core');
+
+export interface ${1:MyFancy}StackProps extends cdk.StackProps { }
+
+export class $1Stack extends cdk.Stack {
+
+    constructor(scope: cdk.Construct, id: string, props: $1StackProps) {
+        super(scope, id, props);
+        $0
+    }
+}
